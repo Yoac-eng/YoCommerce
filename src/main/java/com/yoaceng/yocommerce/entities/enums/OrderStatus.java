@@ -8,13 +8,4 @@ public enum OrderStatus {
     DELIVERED,
     CANCELED
 
-//    private int statusId;
-//
-//    OrderStatus(int statusId) {
-//        this.statusId = statusId;
-//    }
-//
-//    public int getStatusId() {
-//        return this.statusId;
-//    }
 }

@@ -39,6 +39,22 @@ public class ProductService {
         return convertToDto(result);
     }
 
+    @Transactional
+    public ProductDTO update(Long id, ProductDTO dto){
+        Product productById = repository.getReferenceById(id);
+        // Need to use this different method because we need to keep the original entity
+        copyDtoToEntity(dto, productById);
+        Product result = repository.save(productById);
+        return convertToDto(result);
+    }
+
+    private void copyDtoToEntity(ProductDTO dto, Product entity){
+        entity.setName(dto.getName());
+        entity.setDescription(dto.getDescription());
+        entity.setPrice(dto.getPrice());
+        entity.setImgUrl(dto.getImgUrl());
+    }
+
     private ProductDTO convertToDto(Product product){
         ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
         return productDTO;
@@ -48,4 +64,5 @@ public class ProductService {
         Product product = modelMapper.map(productDTO, Product.class);
         return product;
     }
+
 }

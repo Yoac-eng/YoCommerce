@@ -35,7 +35,7 @@ public class ProductService {
     public Page<ProductDTO> findAll(Pageable pageable){
         //Page is a stream in java
         Page<Product> result = repository.findAll(pageable);
-        return result.map(x -> convertToDto(x));
+        return result.map(this::convertToDto);
     }
 
     @Transactional
@@ -78,13 +78,11 @@ public class ProductService {
     }
 
     private ProductDTO convertToDto(Product product){
-        ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
-        return productDTO;
+        return modelMapper.map(product, ProductDTO.class);
     }
 
     private Product convertToEntity(ProductDTO productDTO){
-        Product product = modelMapper.map(productDTO, Product.class);
-        return product;
+        return modelMapper.map(productDTO, Product.class);
     }
 
 }

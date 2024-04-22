@@ -103,8 +103,8 @@ public class ProductController {
      * @return Um {@link ResponseEntity<Void>} contendo uma resposta vazia indicando que o recurso foi excluído com sucesso.
      */
     @DeleteMapping (value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        service.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Long idx){
+        service.delete(idx);
         return ResponseEntity.noContent().build();
     }
 }
